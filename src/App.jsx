@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Card from "./assets/Card";
 function App() {
   const url = "http://localhost:3333/politicians";
 
@@ -14,10 +15,11 @@ function App() {
       });
   }, []);
 
-  const newArray =
-    data.filter((arr) =>
-      arr.name.toLowerCase().includes(inputValue.toLowerCase())
-    ) || arr.biography.toLowerCase().includes(inputValue.toLowerCase());
+  const newArray = data.filter(
+    (arr) =>
+      arr.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+      arr.biography.toLowerCase().includes(inputValue.toLowerCase())
+  );
 
   return (
     <>
@@ -25,9 +27,7 @@ function App() {
         <div className="row">
           <div className="col-6">
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">
-                Ricerca Politici
-              </label>
+              <label for="exampleFormControlInput1" class="form-label"></label>
               <input
                 type="text"
                 class="form-control"
@@ -42,15 +42,13 @@ function App() {
           {newArray.map((d, i) => {
             return (
               <>
-                <div className="col-8">
-                  <div className="card g-4" key={i}>
-                    <img src={d.image} alt={d.name} style={{ width: "10%" }} />
-                    <div className="container">
-                      <h4>{d.name}</h4>
-                      <p>{d.position}</p>
-                      <p>{d.biography}</p>
-                    </div>
-                  </div>
+                <div className="col-8 gy-4 " key={i}>
+                  <Card
+                    image={d.image}
+                    name={d.name}
+                    position={d.position}
+                    biography={d.biography}
+                  />
                 </div>
               </>
             );

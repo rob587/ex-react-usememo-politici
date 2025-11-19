@@ -1,6 +1,7 @@
 import React from "react";
 
 const Card = ({ image, name, position, biography }) => {
+  console.log("rendering card:", name);
   return (
     <>
       <div className="card">

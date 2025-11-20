@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Card from "./assets/Card";
 function App() {
   const url = "http://localhost:3333/politicians";
@@ -15,11 +15,13 @@ function App() {
       });
   }, []);
 
-  const newArray = data.filter(
-    (arr) =>
-      arr.name.toLowerCase().includes(inputValue.toLowerCase()) ||
-      arr.biography.toLowerCase().includes(inputValue.toLowerCase())
-  );
+  const newArray = useMemo(() => {
+    return data.filter(
+      (arr) =>
+        arr.name.toLowerCase().includes(inputValue.toLowerCase()) ||
+        arr.biography.toLowerCase().includes(inputValue.toLowerCase())
+    );
+  });
 
   return (
     <>
